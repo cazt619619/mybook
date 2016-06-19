@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class filectrl : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class filectrl : MonoBehaviour
 
     public Text buttiontext02;
 
+    public GameObject button03;
+
     public Scrollbar huagan;
 
     private string neirong;
@@ -25,22 +28,40 @@ public class filectrl : MonoBehaviour
 
     int liehao = 1;
 
+    string _result;
     // Use this for initialization
     void Start()
     {
+      //  StartCoroutine(LoadXML());
 
+        
+     //   CSV.GetInstance().loadFile(_result, "mybook2.csv");
 
         //调试用路径
-        CSV.GetInstance().loadFile(Application.dataPath + "/Resources", "mybook2.csv");
-        //开启协程
-        StartCoroutine(Test());
+        //CSV.GetInstance().loadFile(Application.dataPath + "/Resources", "mybook2.csv");
+
         //ios,安卓使用下面路径
-        // CSV.GetInstance().loadFile(Application.persistentDataPath + "/Resources", "mybook1.csv");
+        CSV.GetInstance().loadFile(Application.streamingAssetsPath , "/mybook2.csv");
 
         // print("string" + CSV.GetInstance().getString(2, 2));
         //print("int" + CSV.GetInstance().getInt(1, 4));
-
+        //开启协程
+        
     }
+
+    //private IEnumerator LoadXML()
+    //{
+    //    string sPath = Application.streamingAssetsPath + "/mybook2.csv";
+
+    //    print(sPath);
+
+    //    WWW www = new WWW(sPath);
+
+    //    yield return www;
+
+    //    _result = www.text;
+    //    print(_result);
+    //}
 
     // Update is called once per frame
     void Update()
@@ -58,6 +79,13 @@ public class filectrl : MonoBehaviour
 
     }
 
+    public void starbuttion() {
+        button03.SetActive(false);
+
+        StartCoroutine(Test());
+
+        text.text = "开始运行";
+    }
 
     //在文本框显示文章内容
     void readBook(int hanghao, int liehao)
@@ -146,7 +174,7 @@ public class filectrl : MonoBehaviour
         //取得按钮文字
         string temps = CSV.GetInstance().getString(hanghao, liehao);
         //取得文字宽度，字符串宽度
-        double tempnum = (21 - temps.Length) * 0.5;
+        double tempnum = (19 - temps.Length) * 0.5;
         //按钮文字输出到文本框
         text.text += jisuankongge(tempnum) +"<color=yellow>"+ temps +"</color>"+ "\n" + "\n";
         //取得跳转行号
@@ -168,7 +196,7 @@ public class filectrl : MonoBehaviour
         print(temps.Length);
 
 
-        double tempnum = (21 - temps.Length) * 0.5;
+        double tempnum = (19 - temps.Length) * 0.5;
 
         text.text += jisuankongge(tempnum) + temps + "\n" + "\n";
 
