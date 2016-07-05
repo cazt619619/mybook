@@ -41,7 +41,7 @@ public class filectrl : MonoBehaviour
         //CSV.GetInstance().loadFile(Application.dataPath + "/Resources", "mybook2.csv");
 
         //ios,安卓使用下面路径
-        CSV.GetInstance().loadFile(Application.streamingAssetsPath , "/mybook2.csv");
+        //CSV.GetInstance().loadFile(Application.streamingAssetsPath , "/mybook2.csv");
 
         // print("string" + CSV.GetInstance().getString(2, 2));
         //print("int" + CSV.GetInstance().getInt(1, 4));
